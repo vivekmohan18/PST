@@ -1,0 +1,17 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int insertPos = 0; // Tracks the position to place the next non-zero element
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                // Swap current non-zero element with the element at insertPos
+                if (i != insertPos) {
+                    int temp = nums[i];
+                    nums[i] = nums[insertPos];
+                    nums[insertPos] = temp;
+                }
+                insertPos++;
+            }
+        }
+    }
+}
