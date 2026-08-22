@@ -1,0 +1,30 @@
+class Solution {
+    public int[] getSumAbsoluteDifferences(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+
+        // Compute total sum first to track rightSum dynamically
+        int rightSum = 0;
+        for (int num : nums) {
+            rightSum += num;
+        }
+
+        int leftSum = 0;
+
+        for (int i = 0; i < n; i++) {
+            // Remove current element from remaining right sum
+            rightSum -= nums[i];
+
+            // Total absolute difference for index i
+            int leftDiff = (i * nums[i]) - leftSum;
+            int rightDiff = rightSum - ((n - 1 - i) * nums[i]);
+
+            result[i] = leftDiff + rightDiff;
+
+            // Add current element to left sum for next iterations
+            leftSum += nums[i];
+        }
+
+        return result;
+    }
+}
